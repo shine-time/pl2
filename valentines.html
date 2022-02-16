@@ -1,5 +1,5 @@
 <html>
-  <head>
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
     <title>Valentines</title>
@@ -8,10 +8,10 @@
         html,
         body,
         #viewDiv {
-          padding: 0;
-          margin: 0;
-          height: 100%;
-          width: 100%;
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            width: 100%;
         }
 
         #title{
@@ -21,48 +21,57 @@
             text-align: center;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             max-width: 450px;
-            background-color: hotpink;
+            background-color: rgba(248, 77, 162, 0.70);
             border-radius: 15px;
             z-index: 5;
+            padding: 10px;
         }
 
-      </style>
-  
-      <link rel="stylesheet" href="https://js.arcgis.com/4.22/esri/themes/light/main.css">
-      <script src="https://js.arcgis.com/4.22/"></script>
-  
-      <script>
+    </style>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.22/esri/themes/light/main.css">
+    <script src="https://js.arcgis.com/4.22/"></script>
+
+    <script>
         require([
             "esri/config",
             "esri/Map", 
             "esri/views/MapView",
-            "esri/Graphic",
-            "esri/layers/GraphicsLayer",
-            ], function (esriConfig,Map, MapView, Graphic, GraphicsLayer) {
-  
-          esriConfig.apiKey = "AAPK6348273020874089a497d59581d68d1cnuQYojghbiKj7QOvyi010yd6TqwAtCt22o1Y6z_Fu9OzSmI2gUObxGG66TxXG-q2";
-  
-          const map = new Map({
-            basemap: "arcgis-topographic" // Basemap layer service
-          });
-  
-          const view = new MapView({
+            "esri/rest/locator",
+            "esri/Graphic"
+        
+            ], function (esriConfig,Map, MapView, locator, Graphic) {
+
+        esriConfig.apiKey = "AAPK6348273020874089a497d59581d68d1cnuQYojghbiKj7QOvyi010yd6TqwAtCt22o1Y6z_Fu9OzSmI2gUObxGG66TxXG-q2";
+
+        const map = new Map({
+            basemap: "arcgis-navigation" // Basemap layer service
+        });
+
+        const view = new MapView({
             map: map,
             center: [-43.183, -22.905], // Longitude, latitude
             zoom: 13, // Zoom level
             container: "viewDiv" // Div element
-          });
-  
-          const graphicsLayer = new GraphicsLayer();
-          map.add(graphicsLayer);
-
-            const point = { //Create First Point
-            type: "point",
-            longitude: -22.910, 
-            latitude: -43.165
-            }
         });
-      </script>
+        
+        const places = ["Choose a place type...:", "Arts and Entertainment", "Nightlife Spot", "Parks and Outdoors"];
+
+        const select = document.createElement("select","");
+            select.setAttribute("class", "esri-widget esri select");
+            select.setAttribute("style", "width:175px; font-family: Franklin Gothic Medium, font-size: 1em")
+
+            places.forEach(function(p){
+                const option = document.createElement("option");
+                option.value = p;
+                option.innerHTML = p;
+                select.appendChild(option);
+        });
+
+        view.ui.add(select, "top-right");
+    }); 
+
+    </script>
 
 </head>
 <body>
