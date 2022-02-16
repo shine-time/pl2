@@ -13,13 +13,31 @@
           height: 100%;
           width: 100%;
         }
+
+        #title{
+            position: absolute;
+            top: 50px;
+            left: 150px;
+            text-align: center;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            max-width: 450px;
+            background-color: hotpink;
+            border-radius: 15px;
+        }
+
       </style>
   
       <link rel="stylesheet" href="https://js.arcgis.com/4.22/esri/themes/light/main.css">
       <script src="https://js.arcgis.com/4.22/"></script>
   
       <script>
-        require(["esri/config","esri/Map", "esri/views/MapView"], function (esriConfig,Map, MapView) {
+        require([
+            "esri/config",
+            "esri/Map", 
+            "esri/views/MapView",
+            "esri/Graphic",
+            "esri/layers/GraphicsLayer",
+            ], function (esriConfig,Map, MapView, Graphic, GraphicsLayer) {
   
           esriConfig.apiKey = "AAPK6348273020874089a497d59581d68d1cnuQYojghbiKj7QOvyi010yd6TqwAtCt22o1Y6z_Fu9OzSmI2gUObxGG66TxXG-q2";
   
@@ -34,11 +52,23 @@
             container: "viewDiv" // Div element
           });
   
+          const graphicsLayer = new GraphicsLayer();
+          map.add(graphicsLayer);
+
+            const point = { //Create First Point
+            type: "point",
+            longitude: -22.910, 
+            latitude: -43.165
+            }
         });
       </script>
 
 </head>
 <body>
-  <div id="viewDiv"></div>
+    <div id="title">
+        <h1>No Valentines Here</h1>
+        <p>In Brazil "Lover's Day" is celebrated on June 12. Valentine's Day is not celebrated because it fall too little before or to little after the Brazilian Carnival.</p>
+    </div>
+    <div id="viewDiv"></div>
 </body>
 </html>
