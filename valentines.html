@@ -21,7 +21,7 @@
             text-align: center;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             max-width: 450px;
-            background-color: rgba(248, 77, 162, 0.70);
+            background-color: rgba(255, 80, 160, 0.70);
             border-radius: 15px;
             z-index: 5;
             padding: 10px;
@@ -51,7 +51,7 @@
         const view = new MapView({
             map: map,
             center: [-43.183, -22.905], // Longitude, latitude
-            zoom: 10, // Zoom level
+            zoom: 12, // Zoom level
             container: "viewDiv" // Div element
         });
         
@@ -91,10 +91,10 @@
                     geometry: result.location, // Point returned
                     symbol: {
                     type: "simple-marker",
-                    color: "#000000",
+                    color: "#FF69B4",
                     size: "12px",
                     outline: {
-                        color: "#ffffff",
+                        color: "#000000",
                         width: "2px"
                     }
                     },
